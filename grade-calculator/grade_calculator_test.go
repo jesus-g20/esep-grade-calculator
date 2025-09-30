@@ -108,3 +108,35 @@ func TestComputeAverageEmpty(t *testing.T) {
 		t.Errorf("Expected average of empty slice to be 0; got %d", avg)
 	}
 }
+
+func TestGetPass(t *testing.T) {
+	gc := NewGradeCalculator()
+	gc.mode = "passfail" // switch to pass/fail mode
+
+	gc.AddGrade("assignment", 85, Assignment)
+	gc.AddGrade("exam", 80, Exam)
+	gc.AddGrade("essay", 78, Essay)
+
+	expected := "Pass"
+	actual := gc.GetFinalGrade()
+
+	if actual != expected {
+		t.Errorf("Expected '%s'; got '%s'", expected, actual)
+	}
+}
+
+func TestGetFail(t *testing.T) {
+	gc := NewGradeCalculator()
+	gc.mode = "passfail" // switch to pass/fail mode
+
+	gc.AddGrade("assignment", 40, Assignment)
+	gc.AddGrade("exam", 55, Exam)
+	gc.AddGrade("essay", 50, Essay)
+
+	expected := "Fail"
+	actual := gc.GetFinalGrade()
+
+	if actual != expected {
+		t.Errorf("Expected '%s'; got '%s'", expected, actual)
+	}
+}
