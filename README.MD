@@ -29,8 +29,3 @@ Run unit tests with code coverage:
 cd grade_calculator/
 go test -coverprofile=coverage.txt ./...
 ```
-
-The grade weighting is currently:
-Assignments = 50%
-Exams = 35%
-Essays = 15%
