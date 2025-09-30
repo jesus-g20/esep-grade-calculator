@@ -85,8 +85,8 @@ func TestNewGradeCalculator(t *testing.T) {
 	if gc == nil {
 		t.Errorf("Expected non-nil GradeCalculator")
 	}
-	if len(gc.assignments) != 0 || len(gc.exams) != 0 || len(gc.essays) != 0 {
-		t.Errorf("Expected empty slices in new GradeCalculator")
+	if len(gc.grades) != 0 {
+		t.Errorf("Expected empty grades slice in new GradeCalculator")
 	}
 }
 
@@ -103,7 +103,7 @@ func TestGradeTypeString(t *testing.T) {
 }
 
 func TestComputeAverageEmpty(t *testing.T) {
-	avg := computeAverage([]Grade{}) // pass an empty slice
+	avg := computeAverageByType([]Grade{}, Assignment)
 	if avg != 0 {
 		t.Errorf("Expected average of empty slice to be 0; got %d", avg)
 	}
